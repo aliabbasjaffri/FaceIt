@@ -11,13 +11,23 @@ import UIKit
 @IBDesignable
 class FaceView: UIView {
     
-    var scale: CGFloat = 0.90
+    @IBInspectable
+    var scale: CGFloat = 0.90 { didSet { self.setNeedsLayout() } }
     
-    var mouthCurvature : CGFloat = 1.0
-    var eyeBrowTilt : Double = 0.0
-    var eyesOpen: Bool = true
-    var color : UIColor = UIColor.blueColor()
-    var lineWidth : CGFloat = 5.0
+    @IBInspectable
+    var mouthCurvature : CGFloat = 1.0 { didSet { self.setNeedsLayout() } }
+    
+    @IBInspectable
+    var eyeBrowTilt : Double = 0.0 { didSet { self.setNeedsLayout() } }
+    
+    @IBInspectable
+    var eyesOpen: Bool = true { didSet { self.setNeedsLayout() } }
+    
+    @IBInspectable
+    var color : UIColor = UIColor.blueColor() { didSet { self.setNeedsLayout() } }
+    
+    @IBInspectable
+    var lineWidth : CGFloat = 5.0 { didSet { self.setNeedsLayout() } }
     
     private var faceRadius: CGFloat{
        return min(bounds.size.width , bounds.size.height) / 2 * scale
