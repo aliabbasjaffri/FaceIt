@@ -30,6 +30,9 @@
                             <constraint firstItem="P0o-IF-UP0" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="j4G-eJ-S7G"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="faceView" destination="P0o-IF-UP0" id="qpg-kg-d1G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -78,7 +78,7 @@ class FaceView: UIView {
         {
             let path = UIBezierPath()
             path.moveToPoint(CGPoint(x: eyeCenter.x - eyeRadius, y: eyeCenter.y))
-            path.addLineToPoint(CGPoint(x: eyeCenter.x - eyeRadius, y: eyeCenter.y))
+            path.addLineToPoint(CGPoint(x: eyeCenter.x + eyeRadius, y: eyeCenter.y))
             path.lineWidth = lineWidth
             return path
         }
