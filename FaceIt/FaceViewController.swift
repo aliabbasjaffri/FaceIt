@@ -23,6 +23,8 @@ class FaceViewController: UIViewController
             sadderSwipeView.direction = .Down
             faceView.addGestureRecognizer(sadderSwipeView)
             
+            let browRotatorView = UIRotationGestureRecognizer(target: self, action: #selector(FaceViewController.toggleBrows))
+            faceView.addGestureRecognizer(browRotatorView)
             updateUI()
         }
     }
@@ -54,6 +56,11 @@ class FaceViewController: UIViewController
     func increaseSadness()
     {
         expressions.mouth = expressions.mouth.sadderMouth()
+    }
+    
+    func toggleBrows()
+    {
+        expressions.eyeBrows = expressions.eyeBrows.moreFurrowedBrow()
     }
     
     private func updateUI()
