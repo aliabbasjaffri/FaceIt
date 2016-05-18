@@ -10,12 +10,26 @@ import UIKit
 
 class FaceViewController: UIViewController
 {
-    @IBOutlet weak var faceView: FaceView! { didSet{ updateUI() } }
+    @IBOutlet weak var faceView: FaceView! {
+        didSet
+        {
+            faceView.addGestureRecognizer(UIPinchGestureRecognizer(target: faceView, action: #selector(FaceView.changeScale(_:))))
+            let swipeView = UISwipeGestureRecognizer(target: self, action: #selector(FaceViewController.increaseHappiness))
+            swipeView.direction = .Up
+            faceView.addGestureRecognizer(swipeView)
+            updateUI()
+        }
+    }
     
-    var expressions = FacialExpressions(eyes: .Close, eyeBrows: .Normal , mouth: .Smile) { didSet{ updateUI() } }
+    var expressions = FacialExpressions(eyes: .Open, eyeBrows: .Relaxed , mouth: .Smirk) { didSet{ updateUI() } }
     
     private var mouthCurvatures = [ FacialExpressions.Mouth.Frown : -1.0, .Smirk: 0.5, .Neutral: 0.0, .Grin : 0.5, .Smile : 1.0 ]
     private var eyeBrowTilts = [ FacialExpressions.Eyebrows.Relaxed : 0.5 , .Furrowed : -0.5 , .Normal : 0.0 ]
+    
+    func increaseHappiness()
+    {
+        expressions.mouth = expressions.mouth.happierMouth()
+    }
     
     private func updateUI()
     {
