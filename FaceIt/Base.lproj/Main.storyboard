@@ -20,6 +20,10 @@
                             <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="P0o-IF-UP0" customClass="FaceView" customModule="FaceIt" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="P6U-a7-UH2" appends="YES" id="k5Z-od-7t9"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -35,6 +39,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="P6U-a7-UH2">
+                    <connections>
+                        <action selector="toggleEyes:" destination="BYZ-38-t0r" id="gc8-jB-Wok"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="565" y="445"/>
         </scene>
