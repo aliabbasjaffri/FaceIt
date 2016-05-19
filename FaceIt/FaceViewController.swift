@@ -23,8 +23,9 @@ class FaceViewController: UIViewController
             sadderSwipeView.direction = .Down
             faceView.addGestureRecognizer(sadderSwipeView)
             
-            let browRotatorView = UIRotationGestureRecognizer(target: self, action: #selector(FaceViewController.toggleBrows))
+            let browRotatorView = UIRotationGestureRecognizer(target: self, action: #selector(FaceViewController.toggleBrows(_:)))
             faceView.addGestureRecognizer(browRotatorView)
+            
             updateUI()
         }
     }
@@ -58,9 +59,23 @@ class FaceViewController: UIViewController
         expressions.mouth = expressions.mouth.sadderMouth()
     }
     
-    func toggleBrows()
+    func toggleBrows(recognizer : UIRotationGestureRecognizer)
     {
-        expressions.eyeBrows = expressions.eyeBrows.moreFurrowedBrow()
+        switch recognizer.state
+        {
+            case .Changed , .Ended:
+                if recognizer.rotation > CGFloat(M_PI/4)
+                {
+                    expressions.eyeBrows = expressions.eyeBrows.moreRelaxedBrow()
+                    recognizer.rotation = 0.0
+                }
+                else if recognizer.rotation <  -CGFloat(M_PI/4)
+                {
+                    expressions.eyeBrows = expressions.eyeBrows.moreFurrowedBrow()
+                    recognizer.rotation = 0.0
+                }
+            default: break
+        }
     }
     
     private func updateUI()
