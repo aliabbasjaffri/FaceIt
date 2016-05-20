@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aqK-hy-iuV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sTJ-J1-xin">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
-        <scene sceneID="dar-PZ-qGc">
+        <!--Split View Controller-->
+        <scene sceneID="Knn-XU-fh2">
             <objects>
-                <tabBarController id="aqK-hy-iuV" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="LKf-bf-wj9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
+                <splitViewController id="sTJ-J1-xin" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="kI3-gp-B7v" kind="relationship" relationship="viewControllers" id="3Lp-6h-rAk"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="QV8-9c-7Fn"/>
+                        <segue destination="kI3-gp-B7v" kind="relationship" relationship="masterViewController" id="lwA-Hg-8K1"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="detailViewController" id="cjZ-DF-KQg"/>
                     </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U4V-F6-cDN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cda-B5-YDH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1027" y="445"/>
+            <point key="canvasLocation" x="-1035" y="400"/>
         </scene>
         <!--Item-->
         <scene sceneID="ND4-JX-WrV">
@@ -42,21 +37,33 @@
                                         <rect key="frame" x="46" y="0.0" width="93" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Happy"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="showDetail" identifier="happy" id="VrE-da-Yas"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GM4-U0-I6l">
                                         <rect key="frame" x="51" y="51" width="84" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Angry"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="showDetail" identifier="angry" id="dZT-Ds-N2D"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fp-x8-SAO">
                                         <rect key="frame" x="37" y="102" width="111" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Worried"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="showDetail" identifier="worried" id="QpT-3s-Gh3"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNY-LC-q9K">
                                         <rect key="frame" x="0.0" y="153" width="185" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Mischievious"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="showDetail" identifier="mischievious" id="vDP-T0-dgs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -131,4 +138,7 @@
             <point key="canvasLocation" x="-207" y="963"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vDP-T0-dgs"/>
+    </inferredMetricsTieBreakers>
 </document>
