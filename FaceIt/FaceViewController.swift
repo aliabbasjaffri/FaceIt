@@ -34,29 +34,29 @@ class FaceViewController: UIViewController
     {
         if recognizer.state == .Ended
         {
-            switch expressions.eyes
+            switch expression.eyes
             {
-                case .Open: expressions.eyes = .Close
-                case .Close: expressions.eyes = .Open
+                case .Open: expression.eyes = .Close
+                case .Close: expression.eyes = .Open
                 case .Squint: break
             }
         }
         
     }
     
-    var expressions = FacialExpressions(eyes: .Open, eyeBrows: .Relaxed , mouth: .Smirk) { didSet{ updateUI() } }
+    var expression = FacialExpressions(eyes: .Open, eyeBrows: .Relaxed , mouth: .Smirk) { didSet{ updateUI() } }
     
     private var mouthCurvatures = [ FacialExpressions.Mouth.Frown : -1.0, .Smirk: 0.5, .Neutral: 0.0, .Grin : 0.5, .Smile : 1.0 ]
     private var eyeBrowTilts = [ FacialExpressions.Eyebrows.Relaxed : 0.5 , .Furrowed : -0.5 , .Normal : 0.0 ]
     
     func increaseHappiness()
     {
-        expressions.mouth = expressions.mouth.happierMouth()
+        expression.mouth = expression.mouth.happierMouth()
     }
     
     func increaseSadness()
     {
-        expressions.mouth = expressions.mouth.sadderMouth()
+        expression.mouth = expression.mouth.sadderMouth()
     }
     
     func toggleBrows(recognizer : UIRotationGestureRecognizer)
@@ -66,12 +66,12 @@ class FaceViewController: UIViewController
             case .Changed , .Ended:
                 if recognizer.rotation > CGFloat(M_PI/4)
                 {
-                    expressions.eyeBrows = expressions.eyeBrows.moreRelaxedBrow()
+                    expression.eyeBrows = expression.eyeBrows.moreRelaxedBrow()
                     recognizer.rotation = 0.0
                 }
                 else if recognizer.rotation <  -CGFloat(M_PI/4)
                 {
-                    expressions.eyeBrows = expressions.eyeBrows.moreFurrowedBrow()
+                    expression.eyeBrows = expression.eyeBrows.moreFurrowedBrow()
                     recognizer.rotation = 0.0
                 }
             default: break
@@ -80,14 +80,17 @@ class FaceViewController: UIViewController
     
     private func updateUI()
     {
-        switch expressions.eyes
+        if faceView != nil
         {
-            case .Open: faceView.eyesOpen = true
-            case .Close : faceView.eyesOpen = false
-            case .Squint : faceView.eyesOpen = false
+            switch expression.eyes
+            {
+                case .Open: faceView.eyesOpen = true
+                case .Close : faceView.eyesOpen = false
+                case .Squint : faceView.eyesOpen = false
+            }
+            faceView.mouthCurvature = CGFloat(mouthCurvatures[expression.mouth] ?? 0.0)
+            faceView.eyeBrowTilt = eyeBrowTilts[expression.eyeBrows] ?? 0.0
         }
-        faceView.mouthCurvature = CGFloat(mouthCurvatures[expressions.mouth] ?? 0.0)
-        faceView.eyeBrowTilt = eyeBrowTilts[expressions.eyeBrows] ?? 0.0
     }
 
 }

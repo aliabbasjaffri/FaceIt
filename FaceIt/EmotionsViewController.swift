@@ -8,28 +8,28 @@
 
 import UIKit
 
-class EmotionsViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+class EmotionsViewController: UIViewController
+{
+    private let emotionalFaces: Dictionary<String , FacialExpressions> = [
+        "Angry" : FacialExpressions(eyes: .Close , eyeBrows: .Furrowed , mouth: .Frown),
+        "Happy" : FacialExpressions(eyes: .Open , eyeBrows: .Normal , mouth: .Smile),
+        "Worried" : FacialExpressions(eyes: .Open , eyeBrows: .Relaxed , mouth: .Smirk),
+        "Mischievious" : FacialExpressions(eyes: .Open , eyeBrows: .Furrowed , mouth: .Grin),
+    ]
     
-
-    /*
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        let destinationViewController =  segue.destinationViewController
+        if let faceViewController = destinationViewController as? FaceViewController
+        {
+            if let identifier = segue.identifier
+            {
+                if let expression = emotionalFaces[identifier]
+                {
+                    faceViewController.expression = expression
+                }
+            }
+        }
     }
-    */
-
 }
